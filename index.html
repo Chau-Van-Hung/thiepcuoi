@@ -144,7 +144,7 @@ button:active{
   <div class="overlay"></div>
   <div class="content">
     <h1>We Are Getting Married</h1>
-    <div class="names">Nguyễn Văn A ❤️ Trần Thị B</div>
+    <div class="names">Hưng ❤️ Quỳnh</div>
     <div class="date">20 • 12 • 2026</div>
 
     <div class="countdown">
@@ -204,7 +204,7 @@ setInterval(()=>create("❤️"),1200);
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
   e.preventDefault();
 
-  fetch("DÁN_LINK_APPS_SCRIPT_CỦA_BẠN_VÀO_ĐÂY",{
+  fetch("https://script.google.com/macros/s/AKfycbxukNX3NDVDkH1sqpkCUYH2QUdykyAPZTAi6sP3cdHaNgmg7Tym1n4rIkj2YsJsaSXeDg/exec",{
     method:"POST",
     body:JSON.stringify({
       name:this.name.value,
