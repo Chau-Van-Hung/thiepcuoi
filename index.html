@@ -2,317 +2,224 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Hưng & Quỳnh Wedding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(to bottom,#ffdce8,#fff0f5);
-  color:#5a3e4d;
-  overflow:hidden;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to bottom,#ffd6e7,#fff);
+    overflow-x:hidden;
+    text-align:center;
+    color:#b30059;
 }
 
-/* ===== OPEN SCREEN ===== */
-.open-screen{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#ffb6d5,#ffcde6);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:9999;
-  text-align:center;
-  padding:20px;
-  transition:1s;
+/* Màn hình mở thiệp */
+#cover{
+    position:fixed;
+    inset:0;
+    background:linear-gradient(135deg,#ffb6d5,#ffd6ec);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
 }
 
-.open-card{
-  background:white;
-  padding:40px 30px;
-  border-radius:20px;
-  box-shadow:0 10px 40px rgba(0,0,0,0.15);
-  animation:fadeIn 1.5s ease;
+#openBtn{
+    padding:15px 40px;
+    border:none;
+    border-radius:50px;
+    font-size:18px;
+    background:white;
+    color:#e60073;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
-.open-card h2{
-  font-family:'Great Vibes',cursive;
-  font-size:40px;
-  margin-bottom:20px;
-  color:#e91e63;
+.container{
+    padding:60px 20px;
+    display:none;
 }
 
-.open-btn{
-  padding:14px 30px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(45deg,#ff80ab,#ff4081);
-  color:white;
-  font-size:16px;
-  cursor:pointer;
-}
-
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ===== MAIN CONTENT ===== */
-.main{
-  display:none;
-}
-
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:25px 20px;
-}
-
-.content{
-  max-width:520px;
-}
-
-.title{
-  font-family:'Great Vibes',cursive;
-  color:#e91e63;
-  line-height:1.2;
-}
-
-.title .line1{
-  font-size:clamp(40px,8vw,60px);
-  white-space:nowrap;
-}
-
-.title .line2{
-  font-size:clamp(45px,9vw,70px);
-  display:block;
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:55px;
 }
 
 .names{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(22px,6vw,30px);
-  margin:15px 0;
+    font-size:28px;
+    font-weight:700;
+    margin:10px 0;
 }
 
-.date{
-  letter-spacing:3px;
-  font-size:14px;
-  margin-bottom:25px;
+.we{
+    font-size:22px;
+    margin:10px 0;
 }
 
-/* COUNTDOWN */
 .countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+    margin:20px 0;
+    font-size:20px;
 }
 
-.box{
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(8px);
-  padding:14px 6px;
-  border-radius:15px;
-  font-size:12px;
-  box-shadow:0 5px 15px rgba(233,30,99,0.1);
+.section{
+    margin:40px 0;
 }
 
-.box span{
-  font-size:20px;
-  font-weight:600;
-  color:#e91e63;
+input,textarea{
+    width:100%;
+    max-width:400px;
+    padding:12px;
+    margin:8px auto;
+    border-radius:10px;
+    border:1px solid #ff99cc;
 }
 
-/* RSVP */
-.rsvp{
-  padding:60px 20px;
+button.submit{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff66a3;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
-.rsvp h2{
-  text-align:center;
-  font-family:'Playfair Display',serif;
-  margin-bottom:30px;
-  font-size:24px;
+/* sóng nhạc */
+.music-wave{
+    display:flex;
+    justify-content:center;
+    gap:4px;
+    margin-top:15px;
+}
+.music-wave span{
+    width:4px;
+    height:15px;
+    background:#ff3399;
+    animation:wave 1s infinite ease-in-out;
+}
+.music-wave span:nth-child(2){animation-delay:.1s}
+.music-wave span:nth-child(3){animation-delay:.2s}
+.music-wave span:nth-child(4){animation-delay:.3s}
+.music-wave span:nth-child(5){animation-delay:.4s}
+
+@keyframes wave{
+    0%,100%{height:15px}
+    50%{height:35px}
 }
 
-form{
-  max-width:500px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-  background:rgba(255,255,255,0.6);
-  padding:25px;
-  border-radius:20px;
-  backdrop-filter:blur(10px);
-  box-shadow:0 10px 30px rgba(233,30,99,0.15);
+/* tim bay */
+.heart{
+    position:fixed;
+    bottom:-10px;
+    color:#ff3399;
+    animation:fly 6s linear infinite;
+    font-size:20px;
+}
+@keyframes fly{
+    0%{transform:translateY(0) scale(1);opacity:1}
+    100%{transform:translateY(-100vh) scale(1.5);opacity:0}
 }
 
-input,select,textarea{
-  padding:15px;
-  border-radius:15px;
-  border:1px solid #ffc1d6;
-  font-size:14px;
-}
-
-button{
-  padding:16px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(45deg,#ff80ab,#ff4081);
-  color:white;
-  font-size:15px;
-  font-weight:500;
-  min-height:52px;
-}
-
-button:active{transform:scale(0.96)}
-
-/* MUSIC */
-.music-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#ff4081;
-  color:white;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-}
-
-/* EFFECT */
-.effect{
-  position:fixed;
-  top:-10px;
-  pointer-events:none;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg)}
+@media(max-width:480px){
+    h1{font-size:40px}
+    .names{font-size:22px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- OPEN SCREEN -->
-<div class="open-screen" id="openScreen">
-  <div class="open-card">
-    <h2>Wedding Invitation</h2>
-    <button class="open-btn" onclick="openInvite()">💌 Bấm để mở thiệp</button>
-  </div>
+<div id="cover">
+    <h1>Wedding Invitation</h1>
+    <button id="openBtn">💌 MỞ THIỆP</button>
 </div>
 
-<div class="main" id="mainContent">
+<div class="container" id="main">
 
-<section class="hero">
-  <div class="content">
-    <div class="title">
-      <div class="line1">We Are</div>
-      <div class="line2">Getting Married</div>
+    <h1>We Are One</h1>
+
+    <div class="names">Châu Văn Hưng</div>
+    <div class="we">&</div>
+    <div class="names">Người Ấy 💖</div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="music-wave" id="wave" style="display:none;">
+        <span></span><span></span><span></span><span></span><span></span>
     </div>
 
-    <div class="names">Hưng ❤️ Quỳnh</div>
-    <div class="date">20 • 12 • 2026</div>
-
-    <div class="countdown">
-      <div class="box"><span id="d">0</span><br>Ngày</div>
-      <div class="box"><span id="h">0</span><br>Giờ</div>
-      <div class="box"><span id="m">0</span><br>Phút</div>
-      <div class="box"><span id="s">0</span><br>Giây</div>
+    <div class="section">
+        <h2>Xác nhận tham dự</h2>
+        <input type="text" id="name" placeholder="Tên của bạn">
+        <textarea id="message" placeholder="Lời chúc..."></textarea>
+        <button class="submit" onclick="sendRSVP()">Gửi lời chúc</button>
+        <p id="status"></p>
     </div>
-  </div>
-</section>
-
-<section class="rsvp">
-  <h2>Xác nhận tham dự</h2>
-  <form id="rsvpForm">
-    <input type="text" name="name" placeholder="Tên của bạn" required>
-    <input type="tel" name="phone" placeholder="Số điện thoại" required>
-    <select name="guests">
-      <option value="1">1 người</option>
-      <option value="2">2 người</option>
-      <option value="3">3 người</option>
-      <option value="4">4 người</option>
-    </select>
-    <textarea name="message" rows="3" placeholder="Lời chúc gửi cô dâu chú rể"></textarea>
-    <button type="submit">Gửi xác nhận</button>
-  </form>
-</section>
 
 </div>
 
 <audio id="music" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c5c3e8c62.mp3" type="audio/mp3">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
-<div class="music-btn" onclick="toggleMusic()">🎵</div>
-
 <script>
-function openInvite(){
-  document.getElementById("openScreen").style.opacity="0";
-  setTimeout(()=>{
-    document.getElementById("openScreen").style.display="none";
-    document.body.style.overflow="auto";
-    document.getElementById("mainContent").style.display="block";
-  },1000);
+
+const openBtn=document.getElementById("openBtn");
+const cover=document.getElementById("cover");
+const main=document.getElementById("main");
+const music=document.getElementById("music");
+const wave=document.getElementById("wave");
+
+openBtn.onclick=function(){
+    cover.style.display="none";
+    main.style.display="block";
+    music.play();
+    wave.style.display="flex";
 }
 
-const date=new Date("Dec 20, 2026 11:00:00").getTime();
+/* Countdown */
+const weddingDate=new Date("2026-12-20 18:00:00").getTime();
 setInterval(()=>{
-  const now=new Date().getTime();
-  const diff=date-now;
-  document.getElementById("d").innerHTML=Math.floor(diff/(1000*60*60*24));
-  document.getElementById("h").innerHTML=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("m").innerHTML=Math.floor((diff%(1000*60*60))/(1000*60));
-  document.getElementById("s").innerHTML=Math.floor((diff%(1000*60))/1000);
+    const now=new Date().getTime();
+    const distance=weddingDate-now;
+    const d=Math.floor(distance/(1000*60*60*24));
+    document.getElementById("countdown").innerHTML="Còn "+d+" ngày nữa 💍";
 },1000);
 
-function create(symbol){
-  const el=document.createElement("div");
-  el.classList.add("effect");
-  el.innerHTML=symbol;
-  el.style.left=Math.random()*100+"vw";
-  el.style.fontSize=(14+Math.random()*14)+"px";
-  el.style.animationDuration=(6+Math.random()*3)+"s";
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),9000);
-}
-setInterval(()=>create("🌸"),1500);
-setInterval(()=>create("💖"),2000);
+/* Gửi sheet */
+function sendRSVP(){
+    const name=document.getElementById("name").value;
+    const message=document.getElementById("message").value;
 
-const music=document.getElementById("music");
-function toggleMusic(){
-  if(music.paused){music.play();}
-  else{music.pause();}
-}
-
-document.getElementById("rsvpForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  fetch("https://script.google.com/macros/s/AKfycbxukNX3NDVDkH1sqpkCUYH2QUdykyAPZTAi6sP3cdHaNgmg7Tym1n4rIkj2YsJsaSXeDg/exec",{
-    method:"POST",
-    body:JSON.stringify({
-      name:this.name.value,
-      phone:this.phone.value,
-      guests:this.guests.value,
-      message:this.message.value
+    fetch("https://script.google.com/macros/s/AKfycbxukNX3NDVDkH1sqpkCUYH2QUdykyAPZTAi6sP3cdHaNgmg7Tym1n4rIkj2YsJsaSXeDg/exec",{
+        method:"POST",
+        body:JSON.stringify({name:name,message:message}),
+        headers:{"Content-Type":"application/json"}
     })
-  });
-  alert("Đã gửi xác nhận 💕");
-  this.reset();
-});
+    .then(res=>res.text())
+    .then(data=>{
+        document.getElementById("status").innerHTML="Đã gửi thành công 💖";
+    })
+    .catch(err=>{
+        document.getElementById("status").innerHTML="Lỗi gửi!";
+    });
+}
+
+/* tim bay */
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},800);
+
 </script>
 
 </body>
