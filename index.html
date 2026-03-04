@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thiệp Cưới Online</title>
+<title>Wedding Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -15,83 +15,143 @@
 }
 
 body{
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg,#fceabb,#f8b500);
+    font-family:'Poppins', sans-serif;
+    overflow:hidden;
+    color:white;
+}
+
+/* FULL SCREEN */
+.hero{
+    height:100vh;
+    background:url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
+    position:relative;
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
-    overflow:hidden;
+    text-align:center;
 }
 
-.card{
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    width:350px;
-    text-align:center;
-    box-shadow:0 20px 40px rgba(0,0,0,0.2);
-    animation: fadeIn 2s ease;
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+}
+
+.content{
+    position:relative;
+    z-index:2;
 }
 
 h1{
-    font-family: 'Dancing Script', cursive;
-    font-size:40px;
-    color:#d6336c;
+    font-family:'Playfair Display', serif;
+    font-size:60px;
 }
 
 .names{
-    font-size:28px;
-    margin:15px 0;
-    color:#333;
-    font-weight:500;
+    font-size:35px;
+    margin:20px 0;
 }
 
 .date{
-    margin:10px 0;
+    font-size:22px;
+    letter-spacing:3px;
+}
+
+/* COUNTDOWN */
+.countdown{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:30px;
     font-size:18px;
-    color:#555;
 }
 
-.location{
-    margin-top:10px;
-    font-size:16px;
-    color:#777;
+.countdown div{
+    background:rgba(255,255,255,0.15);
+    padding:15px 20px;
+    border-radius:10px;
 }
 
-.button{
-    margin-top:25px;
-    display:inline-block;
-    padding:10px 20px;
-    background:#d6336c;
-    color:white;
-    text-decoration:none;
-    border-radius:25px;
-    transition:0.3s;
+/* FLOWERS */
+.flower, .heart{
+    position:fixed;
+    top:-10px;
+    pointer-events:none;
+    animation:fall linear infinite;
 }
 
-.button:hover{
-    background:#ad1457;
-    transform:scale(1.1);
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
 }
 </style>
 </head>
-
 <body>
 
-<div class="card">
-    <h1>Wedding Invitation</h1>
-    <div class="names">Châu Văn Hưng ❤️ Trần Thị Như Quỳnh</div>
-    <div class="date">Chủ Nhật, 20/12/2026</div>
-    <div class="date">Lúc 11:00 AM</div>
-    <div class="location">Nhà Hàng Hoàng Gia - Đà Nẵng</div>
-    <a href="#" class="button">Xác nhận tham dự</a>
-</div>
+<section class="hero">
+    <div class="overlay"></div>
+    <div class="content">
+        <h1>We Are Getting Married</h1>
+        <div class="names">Châu Văn Hưng ❤️ Trần Thị Như Quỳnh</div>
+        <div class="date">20 • 12 • 2026</div>
+
+        <div class="countdown">
+            <div><span id="days">0</span><br>Ngày</div>
+            <div><span id="hours">0</span><br>Giờ</div>
+            <div><span id="minutes">0</span><br>Phút</div>
+            <div><span id="seconds">0</span><br>Giây</div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+/* COUNTDOWN */
+const weddingDate = new Date("Dec 20, 2026 11:00:00").getTime();
+
+setInterval(function(){
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+    const seconds = Math.floor((distance % (1000*60))/1000);
+
+    document.getElementById("days").innerHTML = days;
+    document.getElementById("hours").innerHTML = hours;
+    document.getElementById("minutes").innerHTML = minutes;
+    document.getElementById("seconds").innerHTML = seconds;
+
+},1000);
+
+
+/* FLOWERS + HEARTS */
+function createEffect(symbol, className){
+    const el = document.createElement("div");
+    el.classList.add(className);
+    el.innerHTML = symbol;
+
+    el.style.left = Math.random()*100 + "vw";
+    el.style.fontSize = (15 + Math.random()*25) + "px";
+    el.style.animationDuration = (5 + Math.random()*5) + "s";
+
+    document.body.appendChild(el);
+
+    setTimeout(()=>{ el.remove(); }, 10000);
+}
+
+setInterval(()=>{
+    createEffect("🌸","flower");
+},500);
+
+setInterval(()=>{
+    createEffect("❤️","heart");
+},800);
+
+</script>
 
 </body>
 </html>
