@@ -2,64 +2,53 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hưng & Quỳnh Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:'Poppins', sans-serif;
-  background:#000;
-  color:white;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(to bottom,#ffdce8,#fff0f5);
+  color:#5a3e4d;
   overflow-x:hidden;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 
 /* HERO */
 .hero{
   height:100vh;
-  background:url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
-  position:relative;
-  padding:20px;
-}
-
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.65);
+  padding:25px 20px;
 }
 
 .content{
-  position:relative;
-  z-index:2;
   width:100%;
   max-width:500px;
 }
 
 h1{
-  font-family:'Playfair Display', serif;
-  font-size:clamp(28px,7vw,48px);
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(42px,9vw,70px);
+  color:#e91e63;
 }
 
 .names{
-  font-size:clamp(20px,5vw,28px);
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,6vw,30px);
   margin:15px 0;
 }
 
 .date{
   letter-spacing:3px;
-  margin-bottom:20px;
   font-size:14px;
+  margin-bottom:25px;
 }
 
 /* COUNTDOWN */
@@ -67,31 +56,33 @@ h1{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
-  margin-top:20px;
 }
 
 .box{
-  background:rgba(255,255,255,0.15);
-  padding:15px 5px;
-  border-radius:12px;
-  font-size:14px;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(8px);
+  padding:14px 6px;
+  border-radius:15px;
+  font-size:12px;
+  box-shadow:0 5px 15px rgba(233,30,99,0.1);
 }
 
 .box span{
-  font-size:18px;
-  font-weight:500;
+  font-size:20px;
+  font-weight:600;
+  color:#e91e63;
 }
 
-/* RSVP SECTION */
+/* RSVP */
 .rsvp{
-  padding:50px 20px;
-  background:#111;
+  padding:60px 20px;
 }
 
 .rsvp h2{
   text-align:center;
+  font-family:'Playfair Display',serif;
   margin-bottom:30px;
-  font-family:'Playfair Display', serif;
+  font-size:24px;
 }
 
 form{
@@ -100,30 +91,54 @@ form{
   display:flex;
   flex-direction:column;
   gap:15px;
+  background:rgba(255,255,255,0.6);
+  padding:25px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 30px rgba(233,30,99,0.15);
 }
 
-input, textarea, select{
-  padding:14px;
-  border-radius:10px;
-  border:none;
+input,select,textarea{
+  padding:15px;
+  border-radius:15px;
+  border:1px solid #ffc1d6;
   font-size:14px;
 }
 
 button{
-  padding:14px;
+  padding:16px;
   border:none;
   border-radius:30px;
-  background:#e91e63;
+  background:linear-gradient(45deg,#ff80ab,#ff4081);
   color:white;
   font-size:15px;
   font-weight:500;
+  box-shadow:0 5px 15px rgba(255,64,129,0.4);
+  min-height:52px;
 }
 
 button:active{
-  transform:scale(0.97);
+  transform:scale(0.96);
 }
 
-/* FALLING EFFECT */
+/* MUSIC BUTTON */
+.music-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ff4081;
+  color:white;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* EFFECT */
 .effect{
   position:fixed;
   top:-10px;
@@ -136,12 +151,18 @@ button:active{
     transform:translateY(110vh) rotate(360deg);
   }
 }
+
+/* MOBILE SMALL */
+@media(max-width:400px){
+  .box{padding:10px 4px;font-size:11px}
+  .box span{font-size:17px}
+}
 </style>
 </head>
+
 <body>
 
 <section class="hero">
-  <div class="overlay"></div>
   <div class="content">
     <h1>We Are Getting Married</h1>
     <div class="names">Hưng ❤️ Quỳnh</div>
@@ -172,38 +193,50 @@ button:active{
   </form>
 </section>
 
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c5c3e8c62.mp3" type="audio/mp3">
+</audio>
+
+<div class="music-btn" onclick="toggleMusic()">🎵</div>
+
 <script>
 /* COUNTDOWN */
 const date = new Date("Dec 20, 2026 11:00:00").getTime();
 setInterval(()=>{
   const now = new Date().getTime();
   const diff = date - now;
-
   document.getElementById("d").innerHTML = Math.floor(diff/(1000*60*60*24));
   document.getElementById("h").innerHTML = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
   document.getElementById("m").innerHTML = Math.floor((diff%(1000*60*60))/(1000*60));
   document.getElementById("s").innerHTML = Math.floor((diff%(1000*60))/1000);
 },1000);
 
-/* FLOWER + HEART */
+/* EFFECT (mobile optimized) */
 function create(symbol){
-  const el = document.createElement("div");
+  const el=document.createElement("div");
   el.classList.add("effect");
-  el.innerHTML = symbol;
-  el.style.left = Math.random()*100 + "vw";
-  el.style.fontSize = (14+Math.random()*20)+"px";
-  el.style.animationDuration = (6+Math.random()*4)+"s";
+  el.innerHTML=symbol;
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(14+Math.random()*14)+"px";
+  el.style.animationDuration=(6+Math.random()*3)+"s";
   document.body.appendChild(el);
-  setTimeout(()=>el.remove(),10000);
+  setTimeout(()=>el.remove(),9000);
 }
 
-setInterval(()=>create("🌸"),800);
-setInterval(()=>create("❤️"),1200);
+setInterval(()=>create("🌸"),1500);
+setInterval(()=>create("💖"),2000);
 
-/* RSVP SEND TO GOOGLE SCRIPT */
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
+/* MUSIC CONTROL */
+const music=document.getElementById("music");
+function toggleMusic(){
+  if(music.paused){music.play();}
+  else{music.pause();}
+}
+
+/* RSVP GOOGLE SHEET */
+document.getElementById("rsvpForm").addEventListener("submit",function(e){
   e.preventDefault();
-
   fetch("https://script.google.com/macros/s/AKfycbxukNX3NDVDkH1sqpkCUYH2QUdykyAPZTAi6sP3cdHaNgmg7Tym1n4rIkj2YsJsaSXeDg/exec",{
     method:"POST",
     body:JSON.stringify({
@@ -213,8 +246,7 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e){
       message:this.message.value
     })
   });
-
-  alert("Đã gửi xác nhận ❤️");
+  alert("Đã gửi xác nhận 💕");
   this.reset();
 });
 </script>
