@@ -8,60 +8,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Poppins', sans-serif;
-  background:linear-gradient(135deg,#ffe6f0,#ffd1e8,#ffc2dd);
-  color:#b30059;
-  overflow-x:hidden;
+  background:#fff0f5;
+  overflow:hidden;
 }
-/* Màn hình mở thiệp */
-.cover{
+
+/* ===== BOOK ===== */
+.book{
   position:fixed;
-  top:0;
-  left:0;
   width:100%;
   height:100vh;
-  background:linear-gradient(135deg,#ffb3d9,#ff66a3);
+  display:flex;
+  perspective:2000px;
+}
+
+/* 2 cánh */
+.page{
+  width:50%;
+  height:100%;
+  background:#ffcce0;
   display:flex;
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  z-index:9999;
-  color:white;
-  text-align:center;
+  transition:1s;
+  transform-origin:left;
+  z-index:2;
 }
 
-.cover h2{
-  font-family:'Playfair Display', serif;
-  font-size:32px;
-  margin-bottom:20px;
+.page.right{
+  transform-origin:right;
+  background:#ffb3d9;
+}
+
+.page h2{
+  font-family:'Great Vibes', cursive;
+  font-size:40px;
+  color:white;
 }
 
 .open-btn{
-  padding:14px 35px;
+  margin-top:20px;
+  padding:12px 30px;
   border:none;
   border-radius:30px;
-  font-size:16px;
   background:white;
   color:#ff3385;
   cursor:pointer;
-  font-weight:500;
-  transition:0.3s;
 }
 
-.open-btn:hover{
-  transform:scale(1.05);
+/* khi mở */
+.open .left{
+  transform:rotateY(-180deg);
+}
+.open .right{
+  transform:rotateY(180deg);
 }
 
-.hide{
+/* ===== NỘI DUNG ===== */
+.main{
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  background:linear-gradient(135deg,#fff0f5,#ffe4ec);
   display:none;
 }
+
 /* HERO */
 .hero{
   height:100vh;
@@ -69,60 +85,25 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
-  position:relative;
-  padding:20px;
 }
 
 .content{
-  width:100%;
   max-width:500px;
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(10px);
-  padding:40px 25px;
+  background:white;
+  padding:40px 20px;
   border-radius:20px;
-  box-shadow:0 10px 40px rgba(255,105,180,0.25);
 }
 
 h1{
   font-family:'Playfair Display', serif;
-  font-size:clamp(28px,7vw,48px);
-  color:#e60073;
 }
 
 .names{
   font-family:'Great Vibes', cursive;
-  font-size:clamp(34px,8vw,52px);
-  margin:15px 0;
+  font-size:40px;
   color:#e60073;
-  text-shadow:
-    0 0 5px #ff99cc,
-    0 0 10px #ff66a3,
-    0 0 20px #ff3385;
-  animation: glow 2s ease-in-out infinite alternate;
 }
 
-@keyframes glow{
-  from{
-    text-shadow:
-      0 0 5px #ff99cc,
-      0 0 10px #ff66a3,
-      0 0 20px #ff3385;
-  }
-  to{
-    text-shadow:
-      0 0 10px #ffb3d9,
-      0 0 20px #ff66a3,
-      0 0 30px #ff3385;
-  }
-}
-
-.date{
-  letter-spacing:3px;
-  margin-bottom:20px;
-  font-size:14px;
-}
-
-/* COUNTDOWN */
 .countdown{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -131,109 +112,72 @@ h1{
 }
 
 .box{
-  background:white;
-  padding:15px 5px;
-  border-radius:12px;
-  font-size:14px;
-  box-shadow:0 4px 15px rgba(255,105,180,0.2);
+  background:#fff;
+  padding:10px;
+  border-radius:10px;
 }
 
-.box span{
-  font-size:18px;
-  font-weight:500;
-  color:#e60073;
-}
-
-/* RSVP SECTION */
+/* RSVP */
 .rsvp{
-  padding:60px 20px;
-}
-
-.rsvp h2{
-  text-align:center;
-  margin-bottom:30px;
-  font-family:'Playfair Display', serif;
-  color:#e60073;
+  padding:50px 20px;
 }
 
 form{
-  max-width:500px;
+  max-width:400px;
   margin:auto;
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:10px;
 }
 
-input, textarea, select{
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #ffb3d9;
-  font-size:14px;
-  background:white;
-  color:#333;
-}
-
-input:focus, textarea:focus, select:focus{
-  outline:none;
-  border:1px solid #ff66a3;
-  box-shadow:0 0 8px rgba(255,102,163,0.4);
+input,textarea,select{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ff99cc;
 }
 
 button{
-  padding:14px;
+  padding:12px;
   border:none;
-  border-radius:30px;
-  background:linear-gradient(45deg,#ff66a3,#ff3385);
+  border-radius:25px;
+  background:#ff66a3;
   color:white;
-  font-size:15px;
-  font-weight:500;
-  cursor:pointer;
-  transition:0.3s;
 }
 
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 6px 20px rgba(255,0,102,0.3);
-}
-
-button:active{
-  transform:scale(0.97);
-}
-
-/* FALLING EFFECT */
+/* hiệu ứng */
 .effect{
   position:fixed;
   top:-10px;
-  pointer-events:none;
   animation:fall linear forwards;
 }
 
 @keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-  }
-}
-
-@media(max-width:480px){
-  .content{
-    padding:30px 20px;
-  }
+  to{transform:translateY(110vh)}
 }
 </style>
 </head>
+
 <body>
-  <div class="cover" id="cover">
-  <h2>Thiệp cưới</h2>
-  <p>Hưng ❤️ Quỳnh</p>
-  <br>
-  <button class="open-btn" onclick="openInvitation()">Mở Thiệp</button>
+
+<!-- BOOK -->
+<div class="book" id="book">
+  <div class="page left">
+    <h2>Wedding</h2>
+  </div>
+
+  <div class="page right">
+    <h2>Invitation</h2>
+    <button class="open-btn" onclick="openBook()">Mở thiệp</button>
+  </div>
 </div>
+
+<!-- MAIN -->
+<div class="main" id="main">
 
 <section class="hero">
   <div class="content">
-    <h1>We Are <br> Getting Married</h1>
+    <h1>We Are Getting Married</h1>
     <div class="names">Hưng ❤️ Quỳnh</div>
-    <div class="date">20 • 12 • 2028</div>
 
     <div class="countdown">
       <div class="box"><span id="d">0</span><br>Ngày</div>
@@ -245,50 +189,46 @@ button:active{
 </section>
 
 <section class="rsvp">
-  <h2>Xác nhận tham dự</h2>
   <form id="rsvpForm">
     <input type="text" name="name" placeholder="Tên của bạn" required>
-    <input type="tel" name="phone" placeholder="Số điện thoại" required>
+    <input type="tel" name="phone" placeholder="SĐT" required>
     <select name="guests">
       <option value="1">1 người</option>
       <option value="2">2 người</option>
-      <option value="3">3 người</option>
-      <option value="4">4 người</option>
     </select>
-    <textarea name="message" rows="3" placeholder="Lời chúc gửi cô dâu chú rể"></textarea>
-    <button type="submit">Gửi xác nhận</button>
+    <textarea name="message" placeholder="Lời chúc"></textarea>
+    <button type="submit">Gửi</button>
   </form>
 </section>
 
+</div>
+
 <script>
-/* COUNTDOWN */
-const date = new Date("Dec 20, 2028 11:00:00").getTime();
-setInterval(()=>{
-  const now = new Date().getTime();
-  const diff = date - now;
 
-  document.getElementById("d").innerHTML = Math.floor(diff/(1000*60*60*24));
-  document.getElementById("h").innerHTML = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("m").innerHTML = Math.floor((diff%(1000*60*60))/(1000*60));
-  document.getElementById("s").innerHTML = Math.floor((diff%(1000*60))/1000);
-},1000);
+/* mở sách */
+function openBook(){
+  document.getElementById("book").classList.add("open");
 
-/* FLOWER + HEART */
-function create(symbol){
-  const el = document.createElement("div");
-  el.classList.add("effect");
-  el.innerHTML = symbol;
-  el.style.left = Math.random()*100 + "vw";
-  el.style.fontSize = (14+Math.random()*20)+"px";
-  el.style.animationDuration = (6+Math.random()*4)+"s";
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),10000);
+  setTimeout(()=>{
+    document.getElementById("book").style.display="none";
+    document.getElementById("main").style.display="block";
+    document.body.style.overflow="auto";
+  },1000);
 }
 
-setInterval(()=>create("🌸"),800);
-setInterval(()=>create("❤️"),1200);
+/* countdown */
+const date=new Date("Dec 20, 2028 11:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const diff=date-now;
 
-/* GIỮ NGUYÊN LOGIC GỬI GOOGLE SHEET */
+  document.getElementById("d").innerHTML=Math.floor(diff/(1000*60*60*24));
+  document.getElementById("h").innerHTML=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("m").innerHTML=Math.floor((diff%(1000*60*60))/(1000*60));
+  document.getElementById("s").innerHTML=Math.floor((diff%(1000*60))/1000);
+},1000);
+
+/* gửi sheet – giữ nguyên */
 document.getElementById("rsvpForm").addEventListener("submit", function(e){
   e.preventDefault();
 
@@ -302,12 +242,23 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e){
     })
   });
 
-  alert("Đã gửi xác nhận ❤️");
+  alert("Đã gửi ❤️");
   this.reset();
 });
-  function openInvitation(){
-  document.getElementById("cover").classList.add("hide");
+
+/* hoa rơi */
+function create(){
+  const el=document.createElement("div");
+  el.className="effect";
+  el.innerHTML="💖";
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize="20px";
+  el.style.animationDuration="6s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
 }
+setInterval(create,1000);
+
 </script>
 
 </body>
